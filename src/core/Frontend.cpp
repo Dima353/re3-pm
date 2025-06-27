@@ -38,7 +38,7 @@
 // Game has colors inlined in code.
 // For easier modification we collect them here:
 const CRGBA LABEL_COLOR(235, 170, 50, 255);
-const CRGBA SELECTION_HIGHLIGHTBG_COLOR(100, 200, 50, 50);
+const CRGBA SELECTION_HIGHLIGHTBG_COLOR(255, 200, 50, 50);
 const CRGBA MENUOPTION_COLOR = LABEL_COLOR;
 const CRGBA SELECTEDMENUOPTION_COLOR(255, 217, 106, 255);
 const CRGBA HEADER_COLOR(0, 0, 0, 255);
@@ -6515,7 +6515,7 @@ CMenuManager::PrintMap(void)
 		fMapCenterY -= CPad::GetPad(0)->GetLeftStickY() / 128.0f * 20.0f;
 	}
 
-	if (CPad::GetPad(0)->GetMouseWheelDown() || CPad::GetPad(0)->GetPageDown() || CPad::GetPad(0)->GetRightShoulder2()) {
+	if (CPad::GetPad(0)->GetMouseWheelDown() || CPad::GetPad(0)->GetPageDown() || CPad::GetPad(0)->GetLeftShoulder1()) {
 		if (CPad::GetPad(0)->GetMouseWheelDown())
 			ZOOM(mapCrosshair.x, mapCrosshair.y, false);
 		else
@@ -6542,7 +6542,7 @@ CMenuManager::PrintMap(void)
 
 	CSprite2d::DrawRect(CRect(MENU_X(14.0f), SCREEN_STRETCH_FROM_BOTTOM(95.0f),
 		SCREEN_STRETCH_FROM_RIGHT(11.0f), SCREEN_STRETCH_FROM_BOTTOM(59.0f)),
-		CRGBA(235, 170, 50, 255));
+		CRGBA(156, 117, 60, 180));
 
 	CFont::SetScale(MENU_X(0.4f), MENU_Y(0.7f));
 	CFont::SetFontStyle(FONT_LOCALE(FONT_BANK));

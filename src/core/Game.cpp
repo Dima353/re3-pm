@@ -419,7 +419,7 @@ bool CGame::Initialise(const char* datFile)
 	currLevel = LEVEL_INDUSTRIAL;
 
 	PUSH_MEMID(MEMID_TEXTURES);
-	LoadingScreen("Loading the Game", "Loading generic textures", GetRandomSplashScreen());
+	LoadingScreen("", "", GetRandomSplashScreen());
 	gameTxdSlot = CTxdStore::AddTxdSlot("generic");
 	CTxdStore::Create(gameTxdSlot);
 	CTxdStore::AddRef(gameTxdSlot);
@@ -429,12 +429,12 @@ bool CGame::Initialise(const char* datFile)
 	CustomPipes::SetTxdFindCallback();
 #endif
 
-	LoadingScreen("Loading the Game", "Loading particles", nil);
+	LoadingScreen("", "", nil);
 	int particleTxdSlot = CTxdStore::AddTxdSlot("particle");
 	CTxdStore::LoadTxd(particleTxdSlot, "MODELS/PARTICLE.TXD");
 	CTxdStore::AddRef(particleTxdSlot);
 	CTxdStore::SetCurrentTxd(gameTxdSlot);
-	LoadingScreen("Loading the Game", "Setup game variables", nil);
+	LoadingScreen("", "", nil);
 	POP_MEMID();
 
 #ifdef GTA_PS2
@@ -522,7 +522,7 @@ bool CGame::Initialise(const char* datFile)
 #if GTA_VERSION <= GTA3_PS2_160
 	TestModelIndices();
 #endif
-	LoadingScreen("Loading the Game", "Setup paths", GetRandomSplashScreen());
+	LoadingScreen("", "", GetRandomSplashScreen());
 	ThePaths.PreparePathData();
 #if GTA_VERSION > GTA3_PS2_160
 	for (int i = 0; i < NUMPLAYERS; i++)
@@ -531,7 +531,7 @@ bool CGame::Initialise(const char* datFile)
 	TestModelIndices();
 #endif
 
-	LoadingScreen("Loading the Game", "Setup water", nil);
+	LoadingScreen("", "", nil);
 	CWaterLevel::Initialise("DATA\\WATER.DAT");
 #if GTA_VERSION <= GTA3_PS2_160
 	CTimeCycle::Initialise();	// InitialiseOnceAfterRW
@@ -541,7 +541,7 @@ bool CGame::Initialise(const char* datFile)
 	CDraw::SetFOV(120.0f);
 	CDraw::ms_fLODDistance = 500.0f;
 
-	LoadingScreen("Loading the Game", "Setup streaming", nil);
+	LoadingScreen("", "", nil);
 	CStreaming::Init();
 	CStreaming::LoadInitialVehicles();
 	CStreaming::LoadInitialPeds();
@@ -551,7 +551,7 @@ bool CGame::Initialise(const char* datFile)
 	printf("Streaming uses %zuK of its memory", CStreaming::ms_memoryUsed / 1024); // original modifier was %d
 #endif
 
-	LoadingScreen("Loading the Game", "Load animations", GetRandomSplashScreen());
+	LoadingScreen("", "", GetRandomSplashScreen());
 	PUSH_MEMID(MEMID_ANIMATION);
 	CAnimManager::LoadAnimFiles();
 	POP_MEMID();
@@ -562,19 +562,19 @@ bool CGame::Initialise(const char* datFile)
 #ifdef SCREEN_DROPLETS
 	ScreenDroplets::Initialise();
 #endif
-	LoadingScreen("Loading the Game", "Find big buildings", nil);
+	LoadingScreen("", "", nil);
 	CRenderer::Init();
 
-	LoadingScreen("Loading the Game", "Setup game variables", nil);
+	LoadingScreen("", "", nil);
 	CRadar::Initialise();
 	CRadar::LoadTextures();
 	CWeapon::InitialiseWeapons();
 
-	LoadingScreen("Loading the Game", "Setup traffic lights", nil);
+	LoadingScreen("", "", nil);
 	CTrafficLights::ScanForLightsOnMap();
 	CRoadBlocks::Init();
 
-	LoadingScreen("Loading the Game", "Setup game variables", nil);
+	LoadingScreen("", "", nil);
 	CPopulation::Initialise();
 #if GTA_VERSION <= GTA3_PS2_160
 	for (int i = 0; i < NUMPLAYERS; i++)
@@ -593,13 +593,13 @@ bool CGame::Initialise(const char* datFile)
 	CSceneEdit::Initialise();
 #endif
 
-	LoadingScreen("Loading the Game", "Load scripts", nil);
+	LoadingScreen("", "", nil);
 	PUSH_MEMID(MEMID_SCRIPT);
 	CTheScripts::Init();
 	CGangs::Initialise();
 	POP_MEMID();
 
-	LoadingScreen("Loading the Game", "Setup game variables", nil);
+	LoadingScreen("", "", nil);
 #if GTA_VERSION <= GTA3_PS2_160
 	CTimer::Initialise();
 #endif
@@ -631,13 +631,13 @@ bool CGame::Initialise(const char* datFile)
 	CGarages::Init();
 #endif
 
-	LoadingScreen("Loading the Game", "Position dynamic objects", nil);
+	LoadingScreen("", "", nil);
 	CWorld::RepositionCertainDynamicObjects();
 #if GTA_VERSION <= GTA3_PS2_160
 	CCullZones::ResolveVisibilities();
 #endif
 
-	LoadingScreen("Loading the Game", "Initialise vehicle paths", nil);
+	LoadingScreen("", "", nil);
 #if GTA_VERSION > GTA3_PS2_160
 	CCullZones::ResolveVisibilities();
 #endif
@@ -647,7 +647,7 @@ bool CGame::Initialise(const char* datFile)
 	CRecordDataForChase::Init();
 	CReplay::Init();
 
-	LoadingScreen("Loading the Game", "Start script", nil);
+	LoadingScreen("", "", nil);
 #ifdef PS2_MENU
 	if ( !TheMemoryCard.m_bWantToLoad )
 #endif
@@ -657,7 +657,7 @@ bool CGame::Initialise(const char* datFile)
 		TheCamera.Process();
 	}
 
-	LoadingScreen("Loading the Game", "Load scene", nil);
+	LoadingScreen("", "", nil);
 	CModelInfo::RemoveColModelsFromOtherLevels(currLevel);
 	CCollision::ms_collisionInMemory = currLevel;
 	for (int i = 0; i < MAX_PADS; i++)
