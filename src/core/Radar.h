@@ -158,8 +158,8 @@ struct sRadarTraceSave
 #pragma pack(pop)
 
 // Values for screen space
-#define RADAR_LEFT (40.0f)
-#define RADAR_BOTTOM (40.0f)
+#define RADAR_LEFT (44.0f)
+#define RADAR_BOTTOM (50.0f)
 
 #ifdef FIX_RADAR
 /*

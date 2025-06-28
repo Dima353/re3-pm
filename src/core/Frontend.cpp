@@ -40,7 +40,7 @@
 // Game has colors inlined in code.
 // For easier modification we collect them here:
 const CRGBA LABEL_COLOR(255, 150, 225, 255);
-const CRGBA SELECTIONBORDER_COLOR(25, 130, 70, 255);
+const CRGBA SELECTIONBORDER_COLOR(82, 203, 239, 255);
 const CRGBA MENUOPTION_COLOR = LABEL_COLOR;
 const CRGBA SELECTEDMENUOPTION_COLOR = LABEL_COLOR;
 const CRGBA HEADER_COLOR = LABEL_COLOR;
@@ -3595,7 +3595,7 @@ CMenuManager::AdditionalOptionInput(bool &goBack)
 				}
 			}
 
-			if (CPad::GetPad(0)->GetMouseWheelDown() || CPad::GetPad(0)->GetPageDown() || CPad::GetPad(0)->GetRightShoulder2()) {
+			if (CPad::GetPad(0)->GetMouseWheelDown() || CPad::GetPad(0)->GetPageDown() || CPad::GetPad(0)->GetLeftShoulder1()) {
 				if (CPad::GetPad(0)->GetMouseWheelDown() && m_fMapSize > MENU_X(MAP_SIZE_TO_ALLOW_X_MOVE))
 					ZOOM(mapCrosshair.x, mapCrosshair.y, false);
 				else
@@ -3693,16 +3693,16 @@ CMenuManager::AdditionalOptionInput(bool &goBack)
 				m_bShowMouse = true;
 			}
 
-			static bool pressedL = false;
+			static bool pressedSquare = false;
 
-			if (!CPad::GetPad(0)->GetChar('L') && !CPad::GetPad(0)->GetChar('l')) {
-				pressedL = false;
+			if (!CPad::GetPad(0)->GetSquare()) {
+				pressedSquare = false;
 			}
 
-			if (!pressedL) {
-				if (CPad::GetPad(0)->GetChar('L') || CPad::GetPad(0)->GetChar('l')) {
+			if (!pressedSquare) {
+				if (CPad::GetPad(0)->GetSquare()) {
 					m_PrefsShowLegends = !m_PrefsShowLegends;
-					pressedL = true;
+					pressedSquare = true;
 				}
 			}
 			break;
@@ -6029,8 +6029,8 @@ CMenuManager::PrintController(void)
 	CFont::SetScale(MENU_X(SMALLESTTEXT_X_SCALE * 2 * scale * 0.9f), MENU_Y(SMALLESTTEXT_Y_SCALE * scale * 0.9f)); // X
 
 	CFont::SetDropColor(CRGBA(0, 0, 0, FadeIn(255)));
-	CFont::SetDropShadowPosition(0);
-	CFont::SetColor(CRGBA(0, 0, 0, FadeIn(255)));
+	CFont::SetDropShadowPosition(1);
+	CFont::SetColor(CRGBA(255, 255, 255, FadeIn(255)));
 	CFont::SetWrapx(SCREEN_WIDTH);
 
 	float TEXT_L2_X = 85.0f + CONTROLLER_POS_X - centerX, TEXT_L2_Y = -14.0f + CONTROLLER_POS_Y - centerY;
