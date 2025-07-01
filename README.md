@@ -2,6 +2,7 @@
 
 ```
 git clone --recursive https://github.com/Dima353/re3-pm.git -b miami-sdl2 reVC-pm
+cd reVC-pm
 mkdir build && cd build
 cmake .. -DLIBRW_PLATFORM=GL3 -DLIBRW_GL3_GFXLIB=SDL2 -DLIBRW_FORCE_GLES=ON -DREVC_SNES_PAD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 make
