@@ -137,7 +137,8 @@ CRenderer::PreRender(void)
 
 	for (i = 0; i < ms_nNoOfInVisibleEntities; i++) {
 #ifdef SQUEEZE_PERFORMANCE
-		if (ms_aInVisibleEntityPtrs[i]->IsVehicle() && ((CVehicle*)ms_aInVisibleEntityPtrs[i])->IsHeli())
+		if (ms_aInVisibleEntityPtrs[i]->IsVehicle() && ((CVehicle*)ms_aInVisibleEntityPtrs[i])->IsHeli() ||
+	    IsGlass(ms_aInVisibleEntityPtrs[i]->GetModelIndex()))
 #endif
 		ms_aInVisibleEntityPtrs[i]->PreRender();
 	}
