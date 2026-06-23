@@ -784,6 +784,30 @@ void CPad::StartShake_Train(float fX, float fY)
 	}
 }
 
+// Frontend-menu-only confirm/cancel buttons. These only affect navigation
+// inside the menu (CMenuManager); in-game logic continues to call
+// GetCrossJustDown/GetCircleJustDown directly and is unaffected by this
+// setting. See CMenuManager::m_PrefsMenuConfirmIsCross.
+bool CPad::GetMenuConfirmJustDown()
+{
+	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCircleJustDown() : GetCrossJustDown();
+}
+
+bool CPad::GetMenuConfirmJustUp()
+{
+	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCircleJustUp() : GetCrossJustUp();
+}
+
+bool CPad::GetMenuCancelJustDown()
+{
+	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCrossJustDown() : GetCircleJustDown();
+}
+
+bool CPad::GetMenuCancelJustUp()
+{
+	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCrossJustUp() : GetCircleJustUp();
+}
+
 #ifdef GTA_PS2_STUFF
 void CPad::AddToCheatString(char c)
 {

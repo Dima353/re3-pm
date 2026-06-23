@@ -687,6 +687,7 @@ public:
 public:
 	static int32 OS_Language;
 	static int8 m_PrefsUseVibration;
+	static int8 m_PrefsMenuConfirmIsCross;
 	static int8 m_DisplayControllerOnFoot;
 	static int8 m_PrefsUseWideScreen;
 	static int8 m_PrefsRadioStation;

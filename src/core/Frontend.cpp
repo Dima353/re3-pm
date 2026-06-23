@@ -103,12 +103,9 @@ int GetOptionCount(int screen)
 #ifdef TRIANGLE_BACK_BUTTON
 #define GetBackJustUp GetTriangleJustUp
 #define GetBackJustDown GetTriangleJustDown
-#elif defined(CIRCLE_BACK_BUTTON)
-#define GetBackJustUp GetCircleJustUp
-#define GetBackJustDown GetCircleJustDown
 #else
-#define GetBackJustUp GetSquareJustUp
-#define GetBackJustDown GetSquareJustDown
+#define GetBackJustUp GetMenuCancelJustUp
+#define GetBackJustDown GetMenuCancelJustDown
 #endif
 
 #ifdef MENU_MAP
@@ -151,13 +148,14 @@ int8 CMenuManager::m_PrefsControllerType = CONTROLLER_XBOXONE;
 
 int32 CMenuManager::OS_Language = LANG_ENGLISH;
 int8 CMenuManager::m_PrefsUseVibration;
+int8 CMenuManager::m_PrefsMenuConfirmIsCross = 1;
 int8 CMenuManager::m_DisplayControllerOnFoot;
 int8 CMenuManager::m_PrefsVsync = 1;
 int8 CMenuManager::m_PrefsVsyncDisp = 1;
 int8 CMenuManager::m_PrefsFrameLimiter = 1;
 int8 CMenuManager::m_PrefsShowSubtitles = 1;
 int8 CMenuManager::m_PrefsSpeakers;
-int32 CMenuManager::m_ControlMethod;
+int32 CMenuManager::m_ControlMethod = 1;
 int8 CMenuManager::m_PrefsDMA = 1;
 int32 CMenuManager::m_PrefsLanguage;
 uint8 CMenuManager::m_PrefsStereoMono; // unused except restore settings
@@ -542,7 +540,7 @@ CMenuManager::ProcessList(bool &goBack, bool &optionSelected)
 	}
 
 #ifndef TIDY_UP_PBP
-	if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetCrossJustDown()) {
+	if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown()) {
 		m_bShowMouse = 0;
 		optionSelected = true;
 	}
@@ -4353,7 +4351,7 @@ CMenuManager::ProcessButtonPresses(void)
 
 	} else if (isPlainTextScreen(m_nCurrScreen)) {
 #ifndef TIDY_UP_PBP
-		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetCrossJustDown() || CPad::GetPad(0)->GetLeftMouseJustDown()) {
+		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown() || CPad::GetPad(0)->GetLeftMouseJustDown()) {
 			optionSelected = true;
 		}
 		if (CPad::GetPad(0)->GetEscapeJustDown() || CPad::GetPad(0)->GetBackJustUp()) {
@@ -4375,12 +4373,12 @@ CMenuManager::ProcessButtonPresses(void)
 
 #ifndef TIDY_UP_PBP
 		if ((m_nCurrOption == 0) && (m_nCurrScreen == MENUPAGE_PAUSE_MENU)) {
-			if (CPad::GetPad(0)->GetEnterJustUp() || CPad::GetPad(0)->GetCrossJustUp()) {
+			if (CPad::GetPad(0)->GetEnterJustUp() || CPad::GetPad(0)->GetMenuConfirmJustUp()) {
 				m_bShowMouse = false;
 				optionSelected = true;
 			}
 		} else {
-			if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetCrossJustDown()) {
+			if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown()) {
 				m_bShowMouse = false;
 				optionSelected = true;
 			}
@@ -4685,7 +4683,7 @@ CMenuManager::ProcessButtonPresses(void)
 	// Centralized enter/back (except some conditions)
 #ifdef TIDY_UP_PBP
 	if (aScreens[m_nCurrScreen].m_aEntries[m_nCurrOption].m_Action != MENUACTION_RESUME) {
-		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetCrossJustDown() ||
+		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown() ||
 			(isPlainTextScreen(m_nCurrScreen) && CPad::GetPad(0)->GetLeftMouseJustDown())) {
 
 			if (!isPlainTextScreen(m_nCurrScreen))
@@ -4694,7 +4692,7 @@ CMenuManager::ProcessButtonPresses(void)
 			optionSelected = true;
 		}
 	} else {
-		if (CPad::GetPad(0)->GetEnterJustUp() || CPad::GetPad(0)->GetCrossJustUp()) {
+		if (CPad::GetPad(0)->GetEnterJustUp() || CPad::GetPad(0)->GetMenuConfirmJustUp()) {
 			m_bShowMouse = false;
 			optionSelected = true;
 		}
@@ -4726,7 +4724,7 @@ CMenuManager::ProcessButtonPresses(void)
 			DMAudio.PlayFrontEndTrack(m_PrefsRadioStation, TRUE);
 		return;
 	} else if (bottomBarActive) {
-		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetCrossJustDown()) {
+		if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown()) {
 			DMAudio.PlayFrontEndSound(SOUND_FRONTEND_MENU_NAVIGATION, 0);
 			bottomBarActive = false;
 
@@ -6483,7 +6481,7 @@ CMenuManager::PrintMap(void)
 
 	// Adding marker
 	if (m_nMenuFadeAlpha >= 255) {
-		if (CPad::GetPad(0)->GetRightMouseJustDown() || CPad::GetPad(0)->GetCrossJustDown()) {
+		if (CPad::GetPad(0)->GetRightMouseJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown()) {
 			if (mapCrosshair.y > fMapCenterY - fMapSize && mapCrosshair.y < fMapCenterY + fMapSize &&
 				mapCrosshair.x > fMapCenterX - fMapSize && mapCrosshair.x < fMapCenterX + fMapSize) {
 
