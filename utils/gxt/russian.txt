@@ -1797,7 +1797,7 @@ CCullZones::RecalculateCullZoneData()
 У вас закончилось место на жестком диске. Пожалуйста, освободите место перед запуском игры. Нажмите ESC для отмены.
 
 [CVT_MSG]
-Конвертация текстур в формат оптимальный для вашей видеокарты.
+Конвертация текстур в формат оптимальный для вашей консоли.
 
 [C_BREIF]
 ~g~~a~ - там в последний раз видели подозреваемого.
@@ -7960,28 +7960,28 @@ PS: УМРИ, ПАРШИВЫЙ ПЕС, УМРИ!
 ПОЛНОЭКРАННЫЙ
 
 [FEM_CSB]
-CUTSCENE BORDERS
+ГРАНИЦЫ В КАТ-СЦЕНАХ
 
 [FEM_SCF]
 ФОРМАТ ОКНА
 
 [FEM_ISL]
-MAP MEMORY USAGE
+ИСПОЛЬЗОВАНИЕ ПАМЯТИ
 
 [FEM_LOW]
-LOW
+НИЗКОЕ
 
 [FEM_MED]
-MEDIUM
+СРЕДНЕЕ
 
 [FEM_HIG]
-HIGH
+ВЫСОКОЕ
 
 [FEM_2PR]
 PS2 ALPHA TEST
 
 [FEC_FRC]
-СВОБОДНАЯ КАМЕРА
+СВОБОДНЫЙ ОБЗОР
 
 { Linux joy detection }
 [FEC_JOD]
@@ -8011,22 +8011,22 @@ PED RIM LIGHT
 ROAD GLOSS
 
 [FED_CLF]
-COLOUR FILTER
+СВЕТОФИЛЬТР
 
 [FED_WLM]
 WORLD LIGHTMAPS
 
 [FED_MBL]
-MOTION BLUR
+РАЗМЫТИЕ
 
 [FEM_SIM]
-SIMPLE
+СТАНДАРТНЫЙ
 
 [FEM_NRM]
-NORMAL
+ОБЫЧНЫЙ
 
 [FEM_MOB]
-MOBILE
+МОБИЛЬНЫЙ
 
 [FED_MFX]
 MATFX
@@ -8115,10 +8115,10 @@ B - ПРИМЕНИТЬ
 НАСТРОЙКИ ГЕЙМПАДА
 
 [FEM_PED]
-PED DENSITY
+КОЛ-ВО ПЕШЕХОДОВ
 
 [FEM_CAR]
-CAR DENSITY
+КОЛ-ВО ТРАНСПОРТА
 
 { end of file }
 

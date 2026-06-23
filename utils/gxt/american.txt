@@ -7484,7 +7484,7 @@ ON FOOT
 IN CAR
 
 [CVT_MSG]
-Converting textures to optimal format for your video card
+Converting textures to optimal format for your console
 
 [FET_CAC]
 ACTION
