@@ -222,7 +222,36 @@ psNativeTextureSupport(void)
  */
 
 static void _psInitializeVibration() {}
-static void _psHandleVibration() {}
+
+static void _psRumblePad(SDL_GameController *controller, CPad *pad)
+{
+	if (controller == nullptr || pad == nullptr)
+		return;
+
+	float normalized = (float)pad->ShakeFreq / 255.0f;
+	if (normalized > 0.0f && ControlsManager.m_fVibrationCurve > 0.0f)
+		normalized = pow(normalized, ControlsManager.m_fVibrationCurve);
+	normalized *= ControlsManager.m_fVibrationStrength;
+	normalized = Clamp(normalized, 0.0f, 1.0f);
+
+	uint16 motor = (uint16)(normalized * (float)0xFFFF);
+
+	SDL_GameControllerRumble(controller, motor, motor, (uint32)Max(pad->ShakeDur, 0));
+
+	uint32 step = CTimer::GetTimeStepInMilliseconds();
+	if (pad->ShakeDur < (int32)step)
+		pad->ShakeDur = 0;
+	else
+		pad->ShakeDur -= step;
+	if (pad->ShakeDur == 0)
+		pad->ShakeFreq = 0;
+}
+
+static void _psHandleVibration()
+{
+	_psRumblePad(gamepad1, CPad::GetPad(0));
+	_psRumblePad(gamepad2, CPad::GetPad(1));
+}
 
 /*
  *****************************************************************************

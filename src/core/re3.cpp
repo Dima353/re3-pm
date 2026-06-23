@@ -478,6 +478,8 @@ void SaveINIControllerSettings()
 	StoreIni("Controller", "RightStickSensX", ControlsManager.m_rStickSensX);
 	StoreIni("Controller", "RightStickSensY", ControlsManager.m_rStickSensY);
 	StoreIni("Controller", "RightStickDeadzone", ControlsManager.m_rStickDeadzone);
+	StoreIni("Controller", "VibrationStrength", ControlsManager.m_fVibrationStrength);
+	StoreIni("Controller", "VibrationCurve", ControlsManager.m_fVibrationCurve);
 
 	ini.write(cfg);
 }
@@ -502,6 +504,8 @@ bool LoadINISettings()
 	ReadIniIfExists("Controller", "InvertMouseVertically", &MousePointerStateHelper.bInvertVertically);
 	ReadIniIfExists("Controller", "DisableMouseSteering", &CVehicle::m_bDisableMouseSteering);
 	ReadIniIfExists("Controller", "Vibration", &FrontEndMenuManager.m_PrefsUseVibration);
+	ReadIniIfExists("Controller", "VibrationStrength", &ControlsManager.m_fVibrationStrength);
+	ReadIniIfExists("Controller", "VibrationCurve", &ControlsManager.m_fVibrationCurve);
 	ReadIniIfExists("Audio", "SfxVolume", &FrontEndMenuManager.m_PrefsSfxVolume);
 	ReadIniIfExists("Audio", "MusicVolume", &FrontEndMenuManager.m_PrefsMusicVolume);
 	ReadIniIfExists("Audio", "Radio", &FrontEndMenuManager.m_PrefsRadioStation);
