@@ -784,29 +784,32 @@ void CPad::StartShake_Train(float fX, float fY)
 	}
 }
 
-// Frontend-menu-only confirm/cancel buttons. These only affect navigation
-// inside the menu (CMenuManager); in-game logic continues to call
-// GetCrossJustDown/GetCircleJustDown directly and is unaffected by this
-// setting. See CMenuManager::m_PrefsMenuConfirmIsCross.
+#ifdef GAMEPAD_MENU
 bool CPad::GetMenuConfirmJustDown()
 {
-	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCircleJustDown() : GetCrossJustDown();
+	return CMenuManager::m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCircleJustDown() : GetCrossJustDown();
 }
 
 bool CPad::GetMenuConfirmJustUp()
 {
-	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCircleJustUp() : GetCrossJustUp();
+	return CMenuManager::m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCircleJustUp() : GetCrossJustUp();
 }
 
 bool CPad::GetMenuCancelJustDown()
 {
-	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCrossJustDown() : GetCircleJustDown();
+	return CMenuManager::m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCrossJustDown() : GetCircleJustDown();
 }
 
 bool CPad::GetMenuCancelJustUp()
 {
-	return CMenuManager::m_PrefsMenuConfirmIsCross ? GetCrossJustUp() : GetCircleJustUp();
+	return CMenuManager::m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCrossJustUp() : GetCircleJustUp();
 }
+#else
+bool CPad::GetMenuConfirmJustDown() { return GetCrossJustDown(); }
+bool CPad::GetMenuConfirmJustUp() { return GetCrossJustUp(); }
+bool CPad::GetMenuCancelJustDown() { return GetCircleJustDown(); }
+bool CPad::GetMenuCancelJustUp() { return GetCircleJustUp(); }
+#endif
 
 #ifdef GTA_PS2_STUFF
 void CPad::AddToCheatString(char c)

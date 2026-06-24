@@ -148,14 +148,13 @@ int8 CMenuManager::m_PrefsControllerType = CONTROLLER_XBOXONE;
 
 int32 CMenuManager::OS_Language = LANG_ENGLISH;
 int8 CMenuManager::m_PrefsUseVibration;
-int8 CMenuManager::m_PrefsMenuConfirmIsCross = 1;
 int8 CMenuManager::m_DisplayControllerOnFoot;
 int8 CMenuManager::m_PrefsVsync = 1;
 int8 CMenuManager::m_PrefsVsyncDisp = 1;
 int8 CMenuManager::m_PrefsFrameLimiter = 1;
 int8 CMenuManager::m_PrefsShowSubtitles = 1;
 int8 CMenuManager::m_PrefsSpeakers;
-int32 CMenuManager::m_ControlMethod = 1;
+int32 CMenuManager::m_ControlMethod = CONTROL_CLASSIC;
 int8 CMenuManager::m_PrefsDMA = 1;
 int32 CMenuManager::m_PrefsLanguage;
 uint8 CMenuManager::m_PrefsStereoMono; // unused except restore settings

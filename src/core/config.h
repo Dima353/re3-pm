@@ -374,7 +374,6 @@ enum Config {
 #		define MULTISAMPLING		// adds MSAA option
 #		define INVERT_LOOK_FOR_PAD // add bInvertLook4Pad from VC
 #		define PED_CAR_DENSITY_SLIDERS
-#		define MENU_CONFIRM_SWAP // adds a menu option to swap Cross/Circle for menu confirm/cancel (menu navigation only, doesn't affect gameplay)
 #	endif
 #endif
 

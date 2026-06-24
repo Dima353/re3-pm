@@ -95,12 +95,6 @@
 	#define INVERT_PAD_SELECTOR
 #endif
 
-#ifdef MENU_CONFIRM_SWAP
-	#define MENU_CONFIRM_SWAP_SELECTOR MENUACTION_CFO_SELECT, "FEC_CSW", { new CCFOSelect((int8*)&CMenuManager::m_PrefsMenuConfirmIsCross, "Controller", "MenuConfirmIsCross", confirmButtonNames, 2, false) },
-#else
-	#define MENU_CONFIRM_SWAP_SELECTOR
-#endif
-
 #ifdef GAMEPAD_MENU
 	#define SELECT_CONTROLLER_TYPE  MENUACTION_CFO_SELECT, "FEC_TYP", { new CCFOSelect((int8*)&CMenuManager::m_PrefsControllerType, "Controller", "Type", controllerTypes, ARRAY_SIZE(controllerTypes), false, ControllerTypeAfterChange) },
 #else
@@ -109,11 +103,6 @@
 
 const char *filterNames[] = { "FEM_NON", "FEM_SIM", "FEM_NRM", "FEM_MOB" };
 const char *off_on[] = { "FEM_OFF", "FEM_ON" };
-#ifdef RE3_SNES_PAD
-const char *confirmButtonNames[] = { "FEC_CSB", "FEC_CSA" }; // 0: Cross(=B) confirms, 1: Circle(=A) confirms
-#else
-const char *confirmButtonNames[] = { "FEC_CSA", "FEC_CSB" }; // 0: Cross(=A) confirms, 1: Circle(=B) confirms
-#endif  
 
 void RestoreDefGraphics(int8 action) {
 	if (action != FEOPTION_ACTION_SELECT)
@@ -437,7 +426,6 @@ CMenuScreenCustom aScreens[MENUPAGES] = {
 		MENUACTION_CTRLCONFIG,		"FEC_CCF", { nil, SAVESLOT_NONE, MENUPAGE_CONTROLLER_SETTINGS },
 		MENUACTION_CTRLDISPLAY,		"FEC_CDP", { nil, SAVESLOT_NONE, MENUPAGE_CONTROLLER_SETTINGS },
 		INVERT_PAD_SELECTOR
-		MENU_CONFIRM_SWAP_SELECTOR
 		MENUACTION_CTRLVIBRATION,	"FEC_VIB", { nil, SAVESLOT_NONE, MENUPAGE_CONTROLLER_SETTINGS },
 		SELECT_CONTROLLER_TYPE
 		MENUACTION_CHANGEMENU,		"FEDS_TB", { nil, SAVESLOT_NONE, MENUPAGE_NONE },
