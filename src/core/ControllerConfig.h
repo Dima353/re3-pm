@@ -144,6 +144,8 @@ public:
 	bool                  m_bMouseAssociated;
 	float                 m_lStickSensX, m_lStickSensY, m_rStickSensX, m_rStickSensY;
 	float                 m_lStickDeadzone, m_rStickDeadzone;
+	float                 m_fVibrationStrength; // overall rumble strength multiplier, 0.0 = off, 1.0 = default
+	float                 m_fVibrationCurve;     // >1.0 softens weak/frequent shakes (e.g. driving on rough terrain) while keeping strong ones (impacts, explosions) closer to full strength
 
 #ifdef LOAD_INI_SETTINGS
 	static uint32 ms_padButtonsInited;

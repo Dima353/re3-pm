@@ -29,6 +29,8 @@ CControllerConfigManager::CControllerConfigManager()
 	m_rStickSensY = 1.0f;
 	m_lStickDeadzone = 0.3f;
 	m_rStickDeadzone = 0.3f;
+	m_fVibrationStrength = 1.0f;
+	m_fVibrationCurve = 1.8f;
 
 	MakeControllerActionsBlank();
 	InitDefaultControlConfiguration();

@@ -1120,6 +1120,34 @@ void CPad::StartShake_Train(float fX, float fY)
 	}
 }
 
+#ifdef GAMEPAD_MENU
+bool CPad::GetMenuConfirmJustDown()
+{
+	return FrontEndMenuManager.m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCircleJustDown() : GetCrossJustDown();
+}
+
+bool CPad::GetMenuConfirmJustUp()
+{
+	return FrontEndMenuManager.m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCircleJustUp() : GetCrossJustUp();
+}
+
+bool CPad::GetMenuCancelJustDown()
+{
+	return FrontEndMenuManager.m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCrossJustDown() : GetCircleJustDown();
+}
+
+bool CPad::GetMenuCancelJustUp()
+{
+	return FrontEndMenuManager.m_PrefsControllerType == CMenuManager::CONTROLLER_NINTENDO_SWITCH ? GetCrossJustUp() : GetCircleJustUp();
+}
+#else
+// No controller-type setting available in this build - keep the original, fixed mapping.
+bool CPad::GetMenuConfirmJustDown() { return GetCrossJustDown(); }
+bool CPad::GetMenuConfirmJustUp() { return GetCrossJustUp(); }
+bool CPad::GetMenuCancelJustDown() { return GetCircleJustDown(); }
+bool CPad::GetMenuCancelJustUp() { return GetCircleJustUp(); }
+#endif
+
 #ifdef GTA_PS2_STUFF
 void CPad::AddToCheatString(char c)
 {
