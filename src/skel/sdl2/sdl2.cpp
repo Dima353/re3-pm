@@ -22,6 +22,7 @@ long _dwOperatingSystemVersion;
 #include "Timer.h"
 #include "DMAudio.h"
 #include "ControllerConfig.h"
+#include "MoviePlayer.h"
 #include "Frontend.h"
 #include "Game.h"
 #include "PCSave.h"
@@ -1516,6 +1517,7 @@ main(int argc, char *argv[])
 					{
 					    //if (!startupDeactivate)
 						//    PlayMovieInWindow(cmdShow, "movies\\Logo.mpg");
+					    MoviePlayer::Play("movies/Logo.mpg");
 					    gGameState = GS_LOGO_MPEG;
 					    TRACE("gGameState = GS_LOGO_MPEG;");
 					    break;
@@ -1523,20 +1525,15 @@ main(int argc, char *argv[])
 
 				    case GS_LOGO_MPEG:
 					{
-//					    CPad::UpdatePads();
+					    CPad::UpdatePads();
 
-//					    if (startupDeactivate || ControlsManager.GetJoyButtonJustDown() != 0)
+					    if (MoviePlayer::IsActive()) {
+						    MoviePlayer::Draw();
+						    if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown())
+							    MoviePlayer::Stop();
+					    } else {
 						    ++gGameState;
-//					    else if (CPad::GetPad(0)->GetLeftMouseJustDown())
-//						    ++gGameState;
-//					    else if (CPad::GetPad(0)->GetEnterJustDown())
-//						    ++gGameState;
-//					    else if (CPad::GetPad(0)->GetCharJustDown(' '))
-//						    ++gGameState;
-//					    else if (CPad::GetPad(0)->GetAltJustDown())
-//						    ++gGameState;
-//					    else if (CPad::GetPad(0)->GetTabJustDown())
-//						    ++gGameState;
+					    }
 
 					    break;
 				    }
@@ -1547,11 +1544,11 @@ main(int argc, char *argv[])
 //					    CloseClip();
 //					    CoUninitialize();
 //#endif
-//
-//					    if (CMenuManager::OS_Language == LANG_FRENCH || CMenuManager::OS_Language == LANG_GERMAN)
-//						    PlayMovieInWindow(cmdShow, "movies\\GTAtitlesGER.mpg");
-//					    else
-//						    PlayMovieInWindow(cmdShow, "movies\\GTAtitles.mpg");
+
+					    if (FrontEndMenuManager.OS_Language == LANG_FRENCH || FrontEndMenuManager.OS_Language == LANG_GERMAN)
+						    MoviePlayer::Play("movies/GTAtitlesGER.mpg");
+					    else
+						    MoviePlayer::Play("movies/GTAtitles.mpg");
 
 					    gGameState = GS_INTRO_MPEG;
 					    TRACE("gGameState = GS_INTRO_MPEG;");
@@ -1560,10 +1557,15 @@ main(int argc, char *argv[])
 
 				    case GS_INTRO_MPEG:
 					{
-//					    CPad::UpdatePads();
-//
-//					    if (startupDeactivate || ControlsManager.GetJoyButtonJustDown() != 0)
+					    CPad::UpdatePads();
+
+					    if (MoviePlayer::IsActive()) {
+						    MoviePlayer::Draw();
+						    if (CPad::GetPad(0)->GetEnterJustDown() || CPad::GetPad(0)->GetMenuConfirmJustDown())
+							    MoviePlayer::Stop();
+					    } else {
 						    ++gGameState;
+					    }
 //					    else if (CPad::GetPad(0)->GetLeftMouseJustDown())
 //						    ++gGameState;
 //					    else if (CPad::GetPad(0)->GetEnterJustDown())
