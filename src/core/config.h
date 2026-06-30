@@ -185,7 +185,7 @@ enum Config {
 #	define PS2_MENU
 #elif defined GTA_PC
 #	define EXTERNAL_3D_SOUND
-#	define AUDIO_REVERB
+//#	define AUDIO_REVERB
 #	ifndef GTA_HANDHELD
 #		define PC_PLAYER_CONTROLS	// mouse player/cam mode
 #	endif
@@ -230,7 +230,7 @@ enum Config {
 //#define USE_MY_DOCUMENTS
 #define THIS_IS_STUPID
 #define DONT_FIX_REPLAY_BUGS
-#define USE_TXD_CDIMAGE // generate and load textures from txd.img
+//#define USE_TXD_CDIMAGE // generate and load textures from txd.img
 //#define USE_TEXTURE_POOL // not possible because R* used custom RW33
 #define AUDIO_REFLECTIONS
 #else
@@ -318,12 +318,12 @@ enum Config {
 #define ASPECT_RATIO_SCALE	// Not just makes everything scale with aspect ratio, also adds support for all aspect ratios
 #define PROPER_SCALING		// use original DEFAULT_SCREEN_WIDTH/DEFAULT_SCREEN_HEIGHT from PS2 instead of PC(R* changed HEIGHT here to make radar look better, but broke other hud elements aspect ratio).
 #define DEFAULT_NATIVE_RESOLUTION	// Set default video mode to your native resolution (fixes Windows 10 launch)
-#define USE_TXD_CDIMAGE		// generate and load textures from txd.img
+//#define USE_TXD_CDIMAGE		// generate and load textures from txd.img
 #define PS2_ALPHA_TEST		// emulate ps2 alpha test 
 #define IMPROVED_VIDEOMODE	// save and load videomode parameters instead of a magic number
 //#define DISABLE_LOADING_SCREEN // disable the loading screen which vastly improves the loading time
 #define DISABLE_VSYNC_ON_TEXTURE_CONVERSION // make texture conversion work faster by disabling vsync
-#define ANISOTROPIC_FILTERING	// set all textures to max anisotropic filtering
+//#define ANISOTROPIC_FILTERING	// set all textures to max anisotropic filtering
 //#define USE_TEXTURE_POOL
 #ifdef LIBRW
 #define EXTENDED_COLOURFILTER		// more options for colour filter (replaces mblur)
@@ -375,8 +375,8 @@ enum Config {
 #	if defined(XINPUT) || defined(GTA_HANDHELD)
 #		define GAMEPAD_MENU		// Add gamepad menu
 #	endif
-#	define TRIANGLE_BACK_BUTTON
-//#	define CIRCLE_BACK_BUTTON
+//#	define TRIANGLE_BACK_BUTTON
+#	define CIRCLE_BACK_BUTTON
 #define LEGACY_MENU_OPTIONS			// i.e. frame sync(vsync)
 #define MUCH_SHORTER_OUTRO_SCREEN
 // #define XBOX_MESSAGE_SCREEN			// Blue background, no "saved successfully press OK" screen etc.
@@ -452,7 +452,7 @@ static_assert(false, "SUPPORT_XBOX_SCRIPT and SUPPORT_MOBILE_SCRIPT are mutually
 #define EXTERNAL_3D_SOUND // use external engine to simulate 3d audio spatialization. OpenAL would not work without it (because it works in a 3d space
                           // originally and making it work in 2d only requires more resource). Will not work on PS2
 #define AUDIO_REFLECTIONS // Enable audio reflections. This is enabled in all vanilla versions
-#define AUDIO_REVERB // Enable audio reverb. It was disabled in PS2 and mobile versions
+//#define AUDIO_REVERB // Enable audio reverb. It was disabled in PS2 and mobile versions
 #define RADIO_SCROLL_TO_PREV_STATION // Won't work without FIX_BUGS
 //#define AUDIO_CACHE // cache sound lengths to speed up the cold boot
 #define PS2_AUDIO_CHANNELS // increases the maximum number of audio channels to PS2 value of 41 (PSP and mobile have 21 originally)
@@ -484,7 +484,7 @@ static_assert(false, "SUPPORT_XBOX_SCRIPT and SUPPORT_MOBILE_SCRIPT are mutually
 #endif
 #define BIG_IMG // Not complete - allows to read larger img files
 
-//#define SQUEEZE_PERFORMANCE
+#define SQUEEZE_PERFORMANCE
 #ifdef SQUEEZE_PERFORMANCE
 	#undef PS2_ALPHA_TEST
 	#undef NO_ISLAND_LOADING

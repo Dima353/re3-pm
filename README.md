@@ -1,3 +1,15 @@
+# Building for ARM-based retro consoles (Anbernic, PowKiddy, OGA, etc.)
+
+```
+git clone --recursive https://github.com/Dima353/re3-pm.git -b lcs-sdl2 reLCS-pm
+cd reLCS-pm
+mkdir build && cd build
+cmake .. -DLIBRW_PLATFORM=GL3 -DLIBRW_GL3_GFXLIB=SDL2 -DLIBRW_FORCE_GLES=ON -DRELCS_SNES_PAD=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+make -j$(nproc)
+```
+
+# Original README
+
 # reLCS
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FGTAmodding%2Fre3%2Fbadge%3Fref%3Dlcs&style=flat)](https://actions-badge.atrox.dev/GTAmodding/re3/goto?ref=lcs)
 <a href="https://discord.gg/RFNbjsUMGg"><img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" /></a>
